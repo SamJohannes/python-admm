@@ -1,10 +1,10 @@
-# Python 2.7
+#!/bin/python2.7
 
 # Script for running basic analysis on the pyadmm lasso algorithm
 
 import data_generator as dg
-import pyadmm
 import numpy as np
+import group_lasso
 from numpy import linalg as LA
 import matplotlib.pyplot as plt
 
@@ -20,8 +20,8 @@ def lasso_func(A, x, b, lmbda):
 def lasso_test():
     """Runs sample"""
     
-    (A, b, l) = dg.data_gen()
-    (x, hist) = pyadmm.lasso(A, b, l, 1.0, 1.0)
+    (A, b, l, partition) = dg.data_gen()
+    (x, hist) = group_lasso.lasso(A, b, l, partition, 1.0, 1.0)
 
     K = len(hist['objval'])
     x = np.arange(K)
